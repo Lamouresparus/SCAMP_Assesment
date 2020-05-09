@@ -10,23 +10,23 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        start();
+    }
 
+    public static void start(){
         String stringNumber = JOptionPane.showInputDialog("Please input a number");
-        long number = Long.parseLong(stringNumber);
-        List<Long> fibonacciList = getFibonacci(number);
-//        for(long eachNumber: fibonacciList){
-//            System.out.println(eachNumber);
-//        }
-        StringBuilder builder = new StringBuilder(fibonacciList.size());
-        for (int i=0;i<fibonacciList.size();builder.append(fibonacciList.get(i++))) builder.append("\n");
-        JTextArea textArea = new JTextArea("Insert your Text here");
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
-        JOptionPane.showMessageDialog(null, scrollPane, "dialog test with textarea",
-                JOptionPane.YES_NO_OPTION);
-        //JOptionPane.showMessageDialog(null, builder.toString(), "Printing results", JOptionPane.INFORMATION_MESSAGE);
+
+        try{
+            long number = Long.parseLong(stringNumber);
+            List<Long> fibonacciList = getFibonacci(number);
+            StringBuilder builder = new StringBuilder(fibonacciList.size());
+            for (int i=0;i<fibonacciList.size();builder.append(fibonacciList.get(i++))) builder.append("\n");
+            JOptionPane.showMessageDialog(null, builder.toString(), "The Fibonacci Sequence for " + stringNumber +" is", JOptionPane.INFORMATION_MESSAGE);
+
+        }catch(NumberFormatException exception){
+            JOptionPane.showMessageDialog(null, "Please Input a Valid Number","Error!", JOptionPane.ERROR_MESSAGE);
+            start();
+        }
 
     }
 
