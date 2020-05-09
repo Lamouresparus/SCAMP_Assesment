@@ -16,6 +16,7 @@ public class Main {
     public static void start(){
         String stringNumber = JOptionPane.showInputDialog("Please input a number");
 
+        if(stringNumber == null) return;
         try{
             long number = Long.parseLong(stringNumber);
             List<Long> fibonacciList = getFibonacci(number);
